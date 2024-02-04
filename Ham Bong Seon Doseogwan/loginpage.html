@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함봉선도서관 로그인 페이지</title>
+    <script src="js/jquery-3.7.0.min.js"></script>
+</head>
+<body>
+    <h1>함봉선도서관</h1>
+
+    <form>
+    <input type="text" autocomplete="off" id="username" value="아이디"><br>
+    <input type="password" autocomplete="off" id="password" value="비밀번호"><br>
+    <button onclick="login()">로그인</button>
+    </form>
+
+    <div class="footer">
+        <div id="col-0"><li>© All rights reserved</li></div>
+    </div>
+    
+    <style>
+
+    @media only screen and (min-width: 400px) {
+
+        body {
+            background-color: blueviolet;
+        }
+
+        button {
+            border: solid;
+            border-radius: 20px;
+            border-style: inset;
+            margin-left: 126px;
+            margin-top: 3px;
+        }
+
+        button a {
+            text-decoration: none;
+        }
+
+        form {
+            margin-top: 200px;
+            margin-bottom: 5px;
+            margin-right: 30px;
+            margin-left: 680px;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        input {
+            border: solid;
+            border-radius: 20px;
+            border-style: inset;
+            margin-top: 3px;
+        }  
+
+        .footer {
+            position: fixed;
+            list-style-type: none;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: black;
+        }
+
+            #col-0 li {
+            margin-right: 20px;
+            float: right;
+            color: white;
+            text-align: left;
+            text-decoration: none;
+        }
+    }
+
+    </style>
+
+    <script>
+        var attempt=3
+        
+        function login(){
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        
+        if( attempt == 0){
+        document.getElementById("username").disabled = true;
+        document.getElementById("password").disabled = true;
+        document.getElementById("submit").disabled = true;
+        return false;
+        }
+
+        if (username == '아이디' || password == '비밀번호' || username == '' || password == ''){
+        alert ("필요한 모든 정보를 입력합니다");
+        return false;
+        }
+
+        var user = localStorage.getItem("user");
+        user = JSON.parse(user);
+
+        if ( username == user.username && password == user.password){
+        alert ("성공적인 로그인");
+        window.location = "booktable.html";
+        return false;
+        }
+
+        else if (username == '아이디' || password == '비밀번호' || username == '' || password == ''){
+        alert ("필요한 모든 정보를 입력합니다");
+        }
+        
+        else{
+        attempt --;
+        alert("로그인 실패, "+attempt+"의 시도가 있습니다");
+        }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로필 수정</title>
+</head>
+<body>
+    <h1>함봉선도서관</h1>
+
+    <form>
+        <input type="text" id="email" value="이메일"><br>
+        <p>✻</p>
+        <input type="text" id="username" value="아이디"><br>
+        <p>✻</p>
+        <input type="password" id="password" value="비밀번호"><br>
+        <input type="password" id="confirmpassword" value="비밀번호"><br>
+        <button onclick="save()">업데이트를 하다</button>
+    </form>
+
+    <div class="footer">
+        <div id="col-0"><li>© All rights reserved</li></div>
+    </div>
+
+    <style>
+
+    @media only screen and (min-width: 400px) {
+
+        body {
+            background-color: blueviolet;
+        }
+
+        button {
+            border: solid;
+            border-radius: 20px;
+            border-style: inset;
+            margin-left: 126px;
+            margin-top: 3px;
+        }
+
+        form {
+            margin-top: 200px;
+            margin-bottom: 5px;
+            margin-right: 30px;
+            margin-left: 680px;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        input {
+            border: solid;
+            border-radius: 20px;
+            border-style: inset;
+            margin-top: 3px;
+        }
+        
+        p {
+            color: white;
+            margin-left: 80px;
+        }
+
+        .footer {
+            position: fixed;
+            list-style-type: none;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: black;
+        }
+
+        #col-0 li {
+            margin-right: 20px;
+            float: right;
+            color: white;
+            text-align: left;
+            text-decoration: none;
+        }
+    }
+
+    </style>
+
+    <script>
+        function save(){
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var confirmpassword = document.getElementById("confirmpassword").value;
+        var email = document.getElementById("email").value;
+        
+        if(username.length < 6 || password.length < 6){
+        alert("최소 6자 이상의 사용자 이름과 비밀번호를 입력해 주세요");
+        return false
+        }
+
+        if(email=='이메일' || email==''){
+        alert("필요한 모든 정보를 입력합니다")
+        return false;
+        }
+
+        if(password != confirmpassword) {
+        alert ("비밀번호가 일치하지 않습니다, 다시 시도해 주세요...")
+        return false;
+        }
+
+        if(username.length >=6 || password.length >=6){
+        alert("성공적인 등록");
+        }
+
+        var user = {
+        "email": email, "username": username, "password": password
+        }
+
+        localStorage.setItem("user", JSON.stringify(user));
+
+        window.location = "booktable.html";
+        return true;
+    }
+    </script>
+    
+</body>
+</html>

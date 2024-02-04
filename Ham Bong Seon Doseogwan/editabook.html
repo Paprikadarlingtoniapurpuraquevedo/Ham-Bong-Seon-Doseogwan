@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>책 수정</title>
+    <script src="js/jquery-3.7.0.min.js"></script>
+</head>
+<body>
+    <h1>함봉선도서관</h1>
+
+    <form>
+        <input type="text" id="author" value="저술가"><br>
+        <p>✻</p>
+        <input type="text" id="title" value="제목"><br>
+        <p>✻</p>
+        <input type="text" id="publisher" value="출판사"><br>
+        <p>✻</p>
+        <input type="text" id="year" value="년"><br>
+        <button onclick="save()">업데이트를 하다</button>
+    </form>
+
+    <div class="footer">
+        <div id="col-0"><li>© All rights reserved</li></div>
+    </div>
+
+    <style>
+
+    @media only screen and (min-width: 400px) {
+
+        body {
+            background-color: blueviolet;
+        }
+
+        button {
+            border: solid;
+            border-radius: 20px;
+            border-style: inset;
+            margin-left: 126px;
+            margin-top: 3px;
+        }
+
+        form {
+            margin-top: 200px;
+            margin-bottom: 5px;
+            margin-right: 30px;
+            margin-left: 680px;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        input {
+            border: solid;
+            border-radius: 20px;
+            border-style: inset;
+            margin-top: 3px;
+        }
+        
+        p {
+            color: white;
+            margin-left: 80px;
+        }
+
+        .footer {
+            position: fixed;
+            list-style-type: none;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: black;
+        }
+
+        #col-0 li {
+            margin-right: 20px;
+            float: right;
+            color: white;
+            text-align: left;
+            text-decoration: none;
+        }
+    }
+
+    </style>
+
+    <script>
+        function save(){
+        var author = document.getElementById("author").value;
+        var title = document.getElementById("title").value;
+        var publisher = document.getElementById("publisher").value;
+        var year = document.getElementById("year").value;
+        
+        if(author=='저술가' || title=='제목' || publisher=='출판사' || year=='년' || author=='' || title=='' || publisher=='' || year==''){
+        alert("필요한 모든 정보를 입력합니다")
+        return false;
+        }
+
+        var book = {
+        "author": author, "title": title, "publisher": publisher, "year": year
+        }
+
+        localStorage.setItem("book", JSON.stringify(book));
+
+        window.location = "booktable.html";
+        return true;
+    }
+    </script>
+    
+</body>
+</html>
