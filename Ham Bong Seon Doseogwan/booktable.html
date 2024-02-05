@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>데이터베이스</title>
-    <script src="js/jquery-3.7.0.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
     <h1>함봉선도서관</h1>
@@ -32,32 +32,24 @@
         <form>
             <input type="text" id="publisher" value="출판사"><br>
             <p>✻</p>
-            <input type="text" id="year" value="년"><br>
+            <input type="text" id="year" value="년">
             <button onclick="return add()">제출</button>
+            <button onclick="ResetForm()">초기화</button>
         </form>
         </div>
 
-    <table border="1">
-        <thead>
-            <th>저술가</th>
-            <th>제목</th>
-            <th>출판사</th>
-            <th>년</th>
-        </thead>
-    </table>
-
-    <table class="table" id="myTable">
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>
-
-    <div class="footer">
-        <div id="col-0"><li>© All rights reserved</li></div>
-    </div>
+        <table class="table" id="myTable" border="1">
+            <thead>
+                <th>저술가</th>
+                <th>제목</th>
+                <th>출판사</th>
+                <th>년</th>
+            </thead>
+        </table>
+    
+        <div class="footer">
+            <div id="col-0"><li>© All rights reserved</li></div>
+        </div>
 
     <style>
 
@@ -71,7 +63,6 @@
             border: solid;
             border-radius: 20px;
             border-style: inset;
-            margin-left: 126px;
             margin-top: 3px;
         }
 
@@ -102,6 +93,8 @@
 
         table {
             width: 100%;
+            text-align: center;
+            margin-bottom: 50px;
         }
 
         thead {
@@ -220,6 +213,18 @@
 
         localStorage.setItem("table", JSON.stringify(table));
         }
+
+        function ResetForm() {
+        document.getElementById("author").reset();
+        document.getElementById("title").reset();
+        document.getElementById("publisher").reset();
+        document.getElementById("year").reset();
+        }
+
+        function deleterow(el) {
+        $(el).closest('tr').remove();
+        }
+
     </script>
     
 </body>
