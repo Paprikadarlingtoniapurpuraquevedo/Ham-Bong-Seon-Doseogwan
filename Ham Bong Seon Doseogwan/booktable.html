@@ -20,6 +20,23 @@
         </ul>
     </topnav>
 
+    <div id="left-content">
+        <form>
+            <input type="text" id="author" value="저술가"><br>
+            <p>✻</p>
+            <input type="text" id="title" value="제목"><br>
+        </form>
+        </div>
+    
+        <div id="right-content">
+        <form>
+            <input type="text" id="publisher" value="출판사"><br>
+            <p>✻</p>
+            <input type="text" id="year" value="년"><br>
+            <button onclick="return add()">제출</button>
+        </form>
+        </div>
+
     <table border="1">
         <thead>
             <th>저술가</th>
@@ -37,23 +54,6 @@
             <td></td>
         </tr>
     </table>
-
-    <div id="left-content">
-    <form>
-        <input type="text" id="author" value="저술가"><br>
-        <p>✻</p>
-        <input type="text" id="title" value="제목"><br>
-    </form>
-    </div>
-
-    <div id="right-content">
-    <form>
-        <input type="text" id="publisher" value="출판사"><br>
-        <p>✻</p>
-        <input type="text" id="year" value="년"><br>
-        <button onclick="return add()">제출</button>
-    </form>
-    </div>
 
     <div class="footer">
         <div id="col-0"><li>© All rights reserved</li></div>
@@ -76,8 +76,8 @@
         }
 
         form {
-            margin-top: 100px;
-            margin-bottom: 5px;
+            margin-top: 10px;
+            margin-bottom: 50px;
             margin-right: 30px;
             margin-left: 300px;
         }
@@ -214,11 +214,11 @@
         return false;
         }
 
-        var book = {
+        var table = {
         "author": author, "title": title, "publisher": publisher, "year": year
         }
 
-        localStorage.setItem("book", JSON.stringify(book));
+        localStorage.setItem("table", JSON.stringify(table));
         }
     </script>
     
