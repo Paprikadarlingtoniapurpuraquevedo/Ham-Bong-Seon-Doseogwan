@@ -20,13 +20,22 @@
         </ul>
     </topnav>
 
-    <table id="table" border="1">
+    <table border="1">
         <thead>
             <th>저술가</th>
             <th>제목</th>
             <th>출판사</th>
             <th>년</th>
         </thead>
+    </table>
+
+    <table class="table" id="myTable">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
     </table>
 
     <div id="left-content">
@@ -42,7 +51,7 @@
         <input type="text" id="publisher" value="출판사"><br>
         <p>✻</p>
         <input type="text" id="year" value="년"><br>
-        <button onclick="add()">제출</button>
+        <button onclick="return add()">제출</button>
     </form>
     </div>
 
@@ -92,7 +101,6 @@
         }
 
         table {
-            margin-top: 40px;
             width: 100%;
         }
 
@@ -188,15 +196,19 @@
     </style>
 
     <script>
-        var book = localStorage.getItem("book");
-        book = JSON.parse(book);
-
         function add(){
-        var author = document.getElementById("author").value;
-        var title = document.getElementById("title").value;
-        var publisher = document.getElementById("publisher").value;
-        var year = document.getElementById("year").value;
-        
+        var table = document.getElementById("myTable");
+        var row = table.insertRow(0);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        cell1.innerHTML = document.getElementById("author").value;
+        cell2.innerHTML = document.getElementById("title").value;
+        cell3.innerHTML = document.getElementById("publisher").value;
+        cell4.innerHTML = document.getElementById("year").value;
+        return false;
+
         if(author=='저술가' || title=='제목' || publisher=='출판사' || year=='년' || author=='' || title=='' || publisher=='' || year==''){
         alert("필요한 모든 정보를 입력합니다")
         return false;
