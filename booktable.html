@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>데이터베이스</title>
+    <script src="scripts/disable_right_click.js"></script>
+</head>
+<body oncontextmenu="return disableRightClick();">
+    <h1>함봉선도서관</h1>
+
+    <topnav>
+        <ul id="nav"><li>
+            <div id="left-content">
+                <ul><li><a href="editaprophile.html">책 수정</a></li></ul>
+            </div>
+            <div id="right-content">
+                <ul><li><a href="loginpage.html">로그아웃하다</a></li></ul>
+            </div>
+        </li></ul>
+    </topnav>
+
+    <div id="left-content">
+        <form>
+            <label title="Author"><input type="text" name= "author" id="author" value="저술가"></label><br>
+            <p>✻</p>
+            <label title="Title"><input type="text" name="title" id="title" value="제목"></label><br>
+        </form>
+        </div>
+    
+        <div id="right-content">
+        <form>
+            <label title="Publisher"><input type="text" name="publisher" id="publisher" value="출판사"></label><br>
+            <p>✻</p>
+            <label title="Year"><input type="text" name="year" id="year" value="년"></label>
+            <button type="submit" onclick="return add()">제출</button>
+            <button type="submit" onclick="return update()">업데이트</button>
+            <button type="submit" onclick=" return remove()">초기화</button>
+        </form>
+        </div>
+
+        <table class="table" id="table" border="1">
+            <thead>
+                <tr>
+                <th>저술가</th>
+                <th>제목</th>
+                <th>출판사</th>
+                <th>년</th>
+                </tr>
+            </thead>
+        </table>
+    
+        <div class="footer">
+            <div id="col-0"><li>© All rights reserved</li></div>
+        </div>
+
+    <style>
+
+    @media only screen and (min-width: 400px) {
+    
+        body {
+            background-color: blueviolet;
+        }
+
+        button {
+            border: solid;
+            border-radius: 20px;
+            border-style: inset;
+            margin-top: 3px;
+        }
+
+        form {
+            margin-top: 10px;
+            margin-bottom: 50px;
+            margin-right: 30px;
+            margin-left: 300px;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        input {
+            border: solid;
+            border-radius: 20px;
+            border-style: inset;
+            margin-top: 3px;
+        }
+        
+        p {
+            color: white;
+            margin-left: 80px;
+        }
+
+        table {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        thead {
+            border: white 3px inset;
+            transition: all .25s ease-in-out;
+        }
+
+        thead:hover{
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: black;
+        }
+
+            #col-0 li {
+            list-style-type: none;
+            margin-right: 20px;
+            float: right;
+            color: white;
+            text-align: left;
+            text-decoration: none;
+        }
+
+        #nav {
+            list-style-type: none;
+        }
+
+        #left-content {
+            width: 50%;
+            float: left;
+        }
+
+        #left-content li {
+            list-style-type: none;
+            float: left;
+            margin-right: 20px;
+        }
+
+        #left-content li a {
+            text-decoration: none;
+            color: white;
+        }
+
+        #left-content li a:hover {
+            font-weight: bold;
+        }
+
+        #left-content li p {
+            text-decoration: none;
+            color: white;
+        }
+
+        #left-content li p:hover {
+            font-weight: bold;
+        }
+
+        #right-content {
+            width: 50%;
+            float: left;
+        }
+
+        #right-content li {
+            list-style-type: none;
+            float: right;
+            margin-right: 20px;
+        }
+
+        #right-content li a {
+            text-decoration: none;
+            color: white;
+        }
+
+        #right-content li a:hover {
+            font-weight: bold;
+        }
+
+        #right-content li p {
+            text-decoration: none;
+            color: white;
+        }
+
+        #right-content li p:hover {
+            font-weight: bold;
+        }
+        
+        .header {
+            padding: 30px;
+            text-align: center;
+            background-color: black;
+        }
+
+    }
+
+    </style>
+
+    <script>
+        function add(){
+        author = document.getElementById("author").value;
+        title = document.getElementById("title").value;
+        publisher = document.getElementById("publisher").value;
+        year = document.getElementById("year").value;
+
+        if(author=='저술가' || author=='' || title=='제목' || title=='' || publisher=='출판사' || publisher=='' || year=='년' || year==''){
+        alert("필요한 모든 정보를 입력합니다")
+        return null;
+        }
+
+        var table = document.getElementById("table");
+            newRow = table.insertRow(table.length);
+            cell1 = newRow.insertCell(0);
+            cell2 = newRow.insertCell(1);
+            cell3 = newRow.insertCell(2);
+            cell4 = newRow.insertCell(3);
+            author = document.getElementById("author").value;
+            title = document.getElementById("title").value;
+            publisher = document.getElementById("publisher").value;
+            year = document.getElementById("year").value;
+
+            cell1.innerHTML = author;
+            cell2.innerHTML = title;
+            cell3.innerHTML = publisher;
+            cell4.innerHTML = year;
+
+            displayrowtoinput();
+
+            return false;
+
+        var table = {
+        "author": author, "title": title, "publisher": publisher, "year": year
+        }
+
+        localStorage.setItem("table", JSON.stringify(table));
+        }
+
+        function displayrowtoinput() {
+            var rindex, table = document.getElementById("table");
+            for (var i=1; i < table.rows.length; i++){
+                table.rows[i].onclick = function(){
+                    rindex = this.rowindex;
+                    console.log(rindex);
+                    document.getElementById("author").value = this.cells[0].innerHTML;
+                    document.getElementById("title").value = this.cells[1].innerHTML;
+                    document.getElementById("publisher").value = this.cells[2].innerHTML;
+                    document.getElementById("year").value = this.cells[3].innerHTML;
+                }
+            }
+        }
+
+        function update(){}
+
+        function remove(){}
+    </script>
+    
+</body>
+</html>
